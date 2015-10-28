@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- ng-app = directive - tells to load module "store" in app.js when doc loads -->
+<html ng-app="gemStore">
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+		<script type="text/javascript" src="app.js"></script>
+		
+	</head>
+	<!-- set directive to tie controller to the page so we can access data in full page-->
+	<body ng-controller="StoreController as store">
+		<ul class="list-group">
+		<!-- hide this div if a product is sold out -->
+		<!-- <div ng-hide="store.product.soldOut"> -->
+			<li class="list-group-item" ng-repeat="product in store.products"> <!-- ng-repeat is like a loop -->
+				<h3>{{product.name}}
+					<em class="pull-right">${{product.price}}</em>
+				</h3>
+				<p>{{product.description}}</p>
+				<!-- directive is telling browser to show only if canPurchase is true -->
+				<button ng-show="store.product.canPurchase"> Add to Cart </button>
+			</li>
+			
+		</ul>
+		</div>
+	</body>
+</html>
