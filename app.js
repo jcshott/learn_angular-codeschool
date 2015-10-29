@@ -6,7 +6,18 @@
 		// set gem as a property of controller
 		this.products = gems;
 	});
+	app.controller('PanelController', function() {
+		this.tab = 1; 
+		// initialize the page to show first tab
 
+		this.selectTab = function(setTab) {
+			this.tab = setTab;
+		};
+		// methods when you select a tab, make it the active tab
+		this.isSelected = function(checkTab) {
+			return this.tab === checkTab;
+		};
+	});
 	var gems = [
 	{
 		name: 'Dodecahedron',
