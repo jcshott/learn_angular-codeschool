@@ -12,15 +12,25 @@
 		<ul class="list-group">
 		<!-- hide this div if a product is sold out -->
 		<!-- <div ng-hide="store.product.soldOut"> -->
-			<li class="list-group-item" ng-repeat="product in store.products"> <!-- ng-repeat is like a loop -->
+			<li class="list-group-item" ng-repeat="product in store.products | orderBy: '-price'"> <!-- ng-repeat a loop. using built in filter of orderBy (- means descending order) -->
 				<h3>{{product.name}}
-					<em class="pull-right">${{product.price}}</em>
+					<em class="pull-right">{{product.price | currency}}</em> 
+					<!-- | tells angular to take result of first expression and put through second. currency is an angular filter that localizes and adds decimal Angular has lots of filters, like date/time, etc.-->
+					<!-- <img ng-src="{{product.image.full}}"/> use if we have a source link saved in our object info-->
 				</h3>
 				<p>{{product.description}}</p>
 				<!-- directive is telling browser to show only if canPurchase is true -->
 				<button ng-show="store.product.canPurchase"> Add to Cart </button>
+
+				<section>
+					<ul class="nav nav-pills">
+						<!-- ng-click binds the data (tab number) to this item so if we had expression {{tab}}. as we clicked the different list items, the tab value would be re-evaluated and change on fly -->
+						<li><a href ng-click="tab = 1">Description</a></li>
+						<li><a href ng-click="tab = 2">Specifications</a></li>
+						<li><a href ng-click="tab = 3">Reviews</a></li>
+					</ul>
+				</section>
 			</li>
-			
 		</ul>
 		</div>
 	</body>
